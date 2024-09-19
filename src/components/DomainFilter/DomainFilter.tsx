@@ -1,12 +1,17 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/types'
+import {
+	getClassificationsFromDomains,
+	getCountriesFromDomains,
+	getSubClassificationsFromDomains,
+} from './DomainFilter.utils'
 
 const DomainFilter = () => {
 	const domains = useSelector<RootState, string[]>(({ domains }) => domains)
 
-	const countries = [...new Set(domains.map(domain => domain.substring(0, 2)))] // TODO make utils functions
-	const classifications = [...new Set(domains.map(domain =>  domain.substring(3, 5)))]
-	const subClassifications = [...new Set(domains.map(domain => domain.substring(6)))]
+	const countries = getCountriesFromDomains(domains)
+	const classifications = getClassificationsFromDomains(domains)
+	const subClassifications = getSubClassificationsFromDomains(domains)
 
 	return (<>
 		<select name="countries" multiple>

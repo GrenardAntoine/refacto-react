@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import DomainFilter from "./components/DomainFilter";
+import DomainComponent from "./components/DomainComponentExample";
 
 class App extends Component {
   render() {

@@ -136,7 +136,6 @@ describe("DomainFilter Component", () => {
 
       await user.selectOptions(classificationSelect, ["OK"]);
 
-
       expect(options[0].selected).toBe(true);
       expect(options[1].selected).toBe(false);
       expect(options[2].selected).toBe(false);

@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import createStore from "./redux/store";
 import { receiveDomains } from "./redux/domains/actions";
+import { DomainsProvider } from "./DomainContext";
 
 const store = createStore();
 
@@ -20,8 +21,10 @@ store.dispatch(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <DomainsProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </DomainsProvider>,
   document.getElementById("root"),
 );

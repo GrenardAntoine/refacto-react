@@ -20,22 +20,23 @@ const DomainFilter: React.FC<Props> = ({
         (option) => option.value,
       );
 
-      let newSelections = selections
+      let newSelections = selections;
 
       if (selections[type].includes(selectedValues[0])) {
         newSelections = {
           ...selections,
-          [type]: selections[type].filter(value => value !== selectedValues[0]),
-        }; 
+          [type]: selections[type].filter(
+            (value) => value !== selectedValues[0],
+          ),
+        };
       } else {
         newSelections = {
           ...selections,
           [type]: Array.from(new Set(selections[type].concat(selectedValues))),
         };
       }
-      
+
       setSelections(newSelections);
-      console.table(newSelections)
     };
 
   const renderSelect = (name: keyof DomainsType, options: string[]) => (

@@ -1,11 +1,11 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 
 import { getDomains } from "./selectors";
 import { AppState } from "../store";
 
 describe("selectors", () => {
   const state: AppState = {
-    domains: ["SU_PE-RTE", "ST_TE_STT"],
+    domains: ["SU_PE-RTE", "ST_TE-STT"],
   };
 
   describe("getDomains", () => {
@@ -13,7 +13,11 @@ describe("selectors", () => {
     it("should return the domains", () => {
       const domains = getDomains(state);
 
-      expect(domains).toEqual(["SU_PE-RTE", "ST_TE_STT"]);
+      expect(domains).toEqual({
+        countries: ["SU", "ST"],
+        classifications: ["PE", "TE"],
+        subClassifications: ["RTE", "STT"],
+      });
     });
   });
 });

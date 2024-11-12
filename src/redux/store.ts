@@ -1,9 +1,9 @@
 // This file has to be left untouched
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducer'
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./reducer";
 
-export type AppState = ReturnType<typeof rootReducer>
+export type AppState = ReturnType<typeof rootReducer>;
 
-const initializeStore = () => configureStore({reducer: rootReducer});
+const initializeStore = () => configureStore({ reducer: rootReducer });
 
 export default initializeStore;

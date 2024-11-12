@@ -1,17 +1,17 @@
-import { DomainsState, DomainsAction, RECEIVE_DOMAINS } from './types'
+import { DomainsState, DomainsAction, RECEIVE_DOMAINS } from "./types";
 
-const initialState: DomainsState = []
+const initialState: DomainsState = [];
 
 export function domainsReducer(
   state = initialState,
-  action: DomainsAction
+  action: DomainsAction,
 ): DomainsState {
   switch (action.type) {
     case RECEIVE_DOMAINS:
-      return action.domains
+      return action.domains;
     default:
-      return state
+      return state;
   }
 }
 
-export default domainsReducer
+export default domainsReducer;

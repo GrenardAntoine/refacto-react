@@ -1,71 +1,66 @@
-import { useEffect, useState } from 'react';
-import { threadId } from 'worker_threads';
-
-interface State {
-  countries: string[],
-  classifications: string[],
-  subClassifications: string[]
-}
+import React, { useState } from "react";
+import { DomainsType } from "../../types";
 
 interface Props {
-  domains?: string[]
+  domains?: DomainsType;
 }
-
-const DomainFilter = (props: Props) => {
-  const domains = props?.domains ?? [];
-  const countries: string[] = [];
-  const classifications: string[] = [];
-  const subClassifications: string[] = [];
-  const s: any = {};
-
-  let [state, setState] = useState<State>({
+const DomainFilter: React.FC<Props> = ({
+  domains = { countries: [], classifications: [], subClassifications: [] },
+}) => {
+  const [selections, setSelections] = useState<DomainsType>({
     countries: [],
     classifications: [],
-    subClassifications: []
+    subClassifications: [],
   });
 
+  const handleSelect =
+    (type: keyof DomainsType) =>
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const selectedValues = Array.from(event.target.selectedOptions).map(
+        (option) => option.value,
+      );
 
-  useEffect(() => {
-    for(let i = 0; i < domains.length; i++) {
-      if (countries.indexOf(domains[i].substring(0,2)) <= 0) {
-        countries.push(domains[i].substring(0,2))
+      let newSelections = selections;
+
+      if (selections[type].includes(selectedValues[0])) {
+        newSelections = {
+          ...selections,
+          [type]: selections[type].filter(
+            (value) => value !== selectedValues[0],
+          ),
+        };
+      } else {
+        newSelections = {
+          ...selections,
+          [type]: Array.from(new Set(selections[type].concat(selectedValues))),
+        };
       }
-      classifications.push(domains[i].substring(3,5));
-      let flag = false;
-      for(let j = 0; j < subClassifications.length; j++) {
-        if (subClassifications[j] == domains[i].substring(6)) {
-          flag = true
-          break;
-        }
-      }
-      if (!flag) {
-        subClassifications.push(domains[i].substring(6));
-      }
+
+      setSelections(newSelections);
     };
-    setState({
-      countries: countries,
-      classifications: classifications.filter((e, i, l) => l.indexOf(e) === i),
-      subClassifications: subClassifications
-    });
-  }, [domains]);
 
-  return (<>
-    <select name="countries" multiple>
-      {state.countries.map(country => (
-        <option value={country} key={country}>{country}</option>
+  const renderSelect = (name: keyof DomainsType, options: string[]) => (
+    <select
+      name={name}
+      multiple
+      value={selections[name]}
+      onChange={handleSelect(name)}
+    >
+      {options.map((value) => (
+        <option value={value} key={value}>
+          {value}
+        </option>
       ))}
     </select>
-    <select name="classifications" multiple>
-      {state.classifications.map(classification => (
-        <option value={classification} key={classification}>{classification}</option>
-      ))}
-    </select>
-    <select name="subClassifications" multiple>
-      {state.subClassifications.map(subClassification => (
-        <option value={subClassification} key={subClassification}>{subClassification}</option>
-      ))}
-    </select>
-  </>);
-}
+  );
 
-export default DomainFilter
+  return (
+    <>
+      {renderSelect("countries", domains.countries)}
+      {renderSelect("classifications", domains.classifications)}
+      {renderSelect("subClassifications", domains.subClassifications)}
+    </>
+  );
+};
+
+export default DomainFilter;

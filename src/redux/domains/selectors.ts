@@ -1,5 +1,7 @@
-import { AppState } from '../store'
+import { DomainsType } from "../../types";
+import { convertDomainsStringToDomainsType } from "../../utils";
+import { AppState } from "../store";
 
-export function getDomains(state: AppState): string[] {
-  return state.domains
-}
+export const getDomains = (state: AppState): DomainsType => {
+  return convertDomainsStringToDomainsType(state.domains);
+};

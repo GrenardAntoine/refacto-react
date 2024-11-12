@@ -4,7 +4,7 @@
 
 We have a `FilterDomain` component in `src/components/DomainFilter/DomainFilter.component.tsx` which renders a cluster of 3 select inputs allowing the user to filter by `domain`.
 
-A domain is a string provided by an upstream api (in this example, they are hardcoded into `src/index.tsx`) following the following pattern: {country code}_{classification}-{sub classification}, the country code, classification and sub classification being strings containing only uppercase letters (no numbers, no punctuation).
+A domain is a string provided by an upstream api (in this example, they are hardcoded into `src/index.tsx`) following the following pattern: {country code}\_{classification}-{sub classification}, the country code, classification and sub classification being strings containing only uppercase letters (no numbers, no punctuation).
 
 Each of the 3 selects allow the user to choose one or multiple values from, respectively, the list of all distinct countries represented in the existing domains, the list of all distinct classifications, and the list of all distinct subclassifications.
 
@@ -24,14 +24,15 @@ You can run the project to see this filter component in action
 
 ## System Requirements
 
- - Node (Tested with v17.1.0)
- - Optionnal : yarn (Tested with 1.22.17)
- - Optionnal : [NVM](https://github.com/nvm-sh/nvm) (node version manager to install the right version easily)
+- Node (Tested with v17.1.0)
+- Optionnal : yarn (Tested with 1.22.17)
+- Optionnal : [NVM](https://github.com/nvm-sh/nvm) (node version manager to install the right version easily)
 
 ## Installation
+
 ### Setup node environment
 
-to setup the right version with NVM : 
+to setup the right version with NVM :
 
 ```bash
 nvm use
@@ -42,7 +43,9 @@ nvm use
 ```bash
 npm install
 ```
+
 OR
+
 ```bash
 yarn
 ```
@@ -52,7 +55,9 @@ yarn
 ```bash
 npm start
 ```
+
 OR
+
 ```bash
 yarn start
 ```
@@ -62,20 +67,26 @@ yarn start
 ```bash
 npm test
 ```
+
 OR
+
 ```bash
 yarn test
 ```
 
 ## Rules
+
 There are some rules to follow:
- - You must commit regularly
- - You must not modify code when comments explicitly forbid it
+
+- You must commit regularly
+- You must not modify code when comments explicitly forbid it
 
 ## Deliverables
+
 What do we expect from you:
- - the link of the git repository
- - several commits, with an explicit message each time
- - a file / message / email explaining your process and principles you've followed, and how one developer would go about reusing the feature
+
+- the link of the git repository
+- several commits, with an explicit message each time
+- a file / message / email explaining your process and principles you've followed, and how one developer would go about reusing the feature
 
 **Good luck!**

@@ -1,3 +1,5 @@
+import { describe, it, expect } from 'vitest';
+
 import domainsReducer from "./reducer";
 import { receiveDomains } from "./actions";
 import { DomainsState } from "./types";

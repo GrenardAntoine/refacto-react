@@ -1,3 +1,5 @@
+import { describe, it, expect } from 'vitest';
+
 import DomainFilter from "./DomainFilter.component";
 import React, { render, screen } from "@testing-library/react";
 

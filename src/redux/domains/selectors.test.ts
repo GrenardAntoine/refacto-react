@@ -1,3 +1,5 @@
+import { describe, it, expect } from 'vitest';
+
 import { getDomains } from "./selectors";
 import { AppState } from "../store";
 
